@@ -3,16 +3,16 @@ import 'package:test/test.dart';
 
 void main() {
   group('TreeRangeMap tests', () {
-    RangeMap<int> map;
+    RangeMap<int, int> map;
 
     setUp(() {
-      map = new TreeRangeMap<int>();
+      map = new TreeRangeMap<int, int>();
       map[new Range(0, 2)] = 1;
       map[new Range(3, 5)] = 2;
     });
 
     test('isEmpty', () {
-      final emptyMap = new TreeRangeMap<int>();
+      final emptyMap = new TreeRangeMap<int, int>();
       expect(emptyMap.isEmpty, isTrue);
     });
 
@@ -41,7 +41,7 @@ void main() {
     });
 
     test('addAll()', () {
-      final newMap = new TreeRangeMap<int>();
+      final newMap = new TreeRangeMap<int, int>();
       newMap.addAll(map);
 
       expect(newMap[0], equals(1));
