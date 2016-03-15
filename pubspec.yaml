@@ -7,8 +7,9 @@ homepage: https://github.com/kseo/range_map
 environment:
   sdk: '>=1.0.0 <2.0.0'
 
-#dependencies:
-#  lib_name: any
+dependencies:
+  quiver_hashcode: any
+  quiver_iterables: any
 
 dev_dependencies:
   test: '>=0.12.0 <0.13.0'
