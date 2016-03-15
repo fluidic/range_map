@@ -6,4 +6,4 @@ A mapping from disjoint nonempty ranges to values.
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/kseo/range_map/issues
+[tracker]: https://github.com/fluidic/range_map/issues
