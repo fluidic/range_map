@@ -11,10 +11,10 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
 
   @override
   Entry<Range, V> getEntry(C key) {
-    // lastKeyBefore gets the last key in the map
-    // that is strictly smaller than key. Add 1 to key to get
-    // the last key that is smaller than or equal to key.
-    final lastKey = _entriesByLowerBound.lastKeyBefore(key + 1);
+    final lastKey = _entriesByLowerBound.containsKey(key)
+        ? key
+        : _entriesByLowerBound.lastKeyBefore(key);
+
     if (lastKey != null) {
       final entry = _entriesByLowerBound[lastKey];
       return entry.contains(key) ? entry : null;
