@@ -17,17 +17,6 @@ class Entry<K, V> {
   int get hashCode => hash2(key.hashCode, value.hashCode);
 }
 
-class RangeMapEntry<C extends Comparable, V> extends Entry<Range<C>, V> {
-  RangeMapEntry(Range<C> key, V value) : super(key, value);
-
-  bool contains(C value) {
-    return key.contains(value);
-  }
-
-  C get start => key.start;
-  C get end => key.end;
-}
-
 /// A mapping from disjoint nonempty ranges to non-null values.
 /// Queries look up the value associated with the range (if any)
 /// that contains a specified key.

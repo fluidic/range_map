@@ -6,8 +6,8 @@ import 'range_map_base.dart';
 import 'range.dart';
 
 class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
-  final SplayTreeMap<C, RangeMapEntry<C, V>> _entriesByLowerBound =
-      new SplayTreeMap<C, RangeMapEntry<C, V>>();
+  final SplayTreeMap<C, _RangeMapEntry<C, V>> _entriesByLowerBound =
+      new SplayTreeMap<C, _RangeMapEntry<C, V>>();
 
   @override
   Entry<Range, V> getEntry(C key) {
@@ -47,7 +47,7 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
   void _putRangeMapEntry(C start, C end, V value) {
     final range = new Range<C>(start, end);
     assert(range.isNotEmpty);
-    _entriesByLowerBound[start] = new RangeMapEntry<C, V>(range, value);
+    _entriesByLowerBound[start] = new _RangeMapEntry<C, V>(range, value);
   }
 
   @override
@@ -131,3 +131,15 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
   @override
   bool get isNotEmpty => !isEmpty;
 }
+
+class _RangeMapEntry<C extends Comparable, V> extends Entry<Range<C>, V> {
+  _RangeMapEntry(Range<C> key, V value) : super(key, value);
+
+  bool contains(C value) {
+    return key.contains(value);
+  }
+
+  C get start => key.start;
+  C get end => key.end;
+}
+
