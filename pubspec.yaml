@@ -8,8 +8,8 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  quiver_hashcode: any
-  quiver_iterables: any
+  quiver_hashcode: '>=1.0.0 <2.0.0'
+  quiver_iterables: '>=1.0.0 <2.0.0'
 
 dev_dependencies:
   test: '>=0.12.0 <0.13.0'
