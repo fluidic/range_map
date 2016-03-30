@@ -121,12 +121,6 @@ void main() {
       expect(map.values, orderedEquals([1, 2]));
     });
 
-    test('putIfAbsent()', () {
-      expect(map.putIfAbsent(new Range(0, 2), () => 3), 1);
-      expect(map.putIfAbsent(new Range(7, 9), () => 3), 3);
-      expect(map[7], equals(3));
-    });
-
     test('containsValue()', () {
       expect(map.containsValue(1), isTrue);
       expect(map.containsValue(2), isTrue);

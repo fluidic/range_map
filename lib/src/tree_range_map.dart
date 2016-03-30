@@ -57,19 +57,6 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
   }
 
   @override
-  V putIfAbsent(Range<C> key, V ifAbsent()) {
-    final entry = getEntry(key.start);
-    if (entry == null) {
-      final value = ifAbsent();
-      this[key] = value;
-      return value;
-    } else {
-      assert(entry.key == key);
-      return entry.value;
-    }
-  }
-
-  @override
   void addAll(RangeMap<C, V> other) {
     other.forEach((key, value) {
       this[key] = value;

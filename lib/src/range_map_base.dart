@@ -51,13 +51,6 @@ abstract class RangeMap<C extends Comparable, V> {
   /// Maps a range to a specified value.
   void operator []=(Range<C> key, V value);
 
-  /// Looks up the value of [key], or add a new value if it isn't there.
-  ///
-  /// Returns the value associated to [key], if there is one.
-  /// Otherwise calls [ifAbsent] to get a new value, associates [key] to
-  /// that value, and then returns the new value.
-  V putIfAbsent(Range<C> key, V ifAbsent());
-
   /// Adds all key-value pairs of [other] to this map.
   ///
   /// If a key of [other] is already in this map, its value is overwritten.
