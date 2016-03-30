@@ -1,9 +1,20 @@
-// Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 import 'package:range_map/range_map.dart';
 
 main() {
-  var awesome = new Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  final range = new Range<int>(3, 5); // 3 inclusive, 5 exclusive
+  final rangeMap = new TreeRangeMap<int, String>();
+
+  rangeMap[range] = 'foo';
+
+  print('${rangeMap.containsKey(3)}'); // true
+  print('${rangeMap[3]}'); // 'foo'
+
+  print('${rangeMap.containsKey(4)}'); // true
+  print('${rangeMap[4]}'); // 'foo'
+
+  print('${rangeMap.containsKey(5)}'); // false
+  print('${rangeMap[5]}'); // null
+
+  print('${rangeMap.containsKey(6)}'); // false
+  print('${rangeMap[6]}'); // null
 }
