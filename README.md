@@ -1,5 +1,7 @@
 # range_map
 
+[![Build Status](https://travis-ci.org/fluidic/range_map.svg?branch=master)](https://travis-ci.org/fluidic/range_map)
+
 A mapping from disjoint nonempty ranges to values.
 
 ## Usage
