@@ -4,8 +4,12 @@ import 'package:quiver_hashcode/hashcode.dart';
 
 import 'range.dart';
 
+/// A map entry (key-value pair).
 class Entry<K, V> {
+  /// The key corresponding to this [Entry].
   final K key;
+
+  /// The value corresponding to this [Entry].
   final V value;
 
   const Entry(this.key, this.value);
