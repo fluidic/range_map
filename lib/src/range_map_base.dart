@@ -66,18 +66,18 @@ abstract class RangeMap<C extends Comparable, V> {
 
   /// Removes all associations from this range map in the specified range
   ///
-  /// If !range.containsKey(key), this[key] will return the same result before
+  /// If !range.containsKey(key), `this[key]` will return the same result before
   /// and after a call to remove(range). If range.containsKey(key), then after
-  /// a call to remove(range), this[key] will return `null`.
+  /// a call to remove(range), `this[key]` will return `null`.
   void remove(Range<C> rangeToRemove);
 
-  /// The keys of [this].
+  /// The keys of this [RangeMap].
   ///
   /// The order of iteration is defined by the individual `Map` implementation,
   /// but must be consistent between changes to the map.
   Iterable<Range<C>> get keys;
 
-  /// The values of [this].
+  /// The values of this [RangeMap].
   ///
   /// The values are iterated in the order of their corresponding keys.
   /// This means that iterating [keys] and [values] in parallel will
