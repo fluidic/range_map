@@ -2,8 +2,14 @@ library range_map.range;
 
 import 'package:quiver_hashcode/hashcode.dart';
 
+/// An immutable range of objects from [start] inclusive to [end] exclusive.
+///
+/// The objects need to be implementations of [Comparable].
 class Range<C extends Comparable> {
+  /// Start value in this [Range].
   final C start;
+
+  /// End value in this [Range].
   final C end;
 
   /// Returns a [Range] that contains all values greater than or equal to
@@ -14,8 +20,10 @@ class Range<C extends Comparable> {
     }
   }
 
+  /// Returns `true` if there are no objects in this [Range].
   bool get isEmpty => start.compareTo(end) == 0;
 
+  /// Returns `true` if there is at least one element in this [Range].
   bool get isNotEmpty => !isEmpty;
 
   /// Returns `true` if value is within the bounds of this range.
