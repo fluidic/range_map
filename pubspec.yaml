@@ -1,6 +1,6 @@
 name: range_map
 description: A mapping from disjoint nonempty ranges to values.
-version: 0.1.0
+version: 0.2.0
 author: Fluidic Team <dev@fluidic.io>
 homepage: https://github.com/fluidic/range_map
 
