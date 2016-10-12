@@ -25,6 +25,10 @@ class Entry<K, V> {
 /// Queries look up the value associated with the range (if any)
 /// that contains a specified key.
 abstract class RangeMap<C extends Comparable, V> {
+  /// Creates an unmodifiable range map containing the entries of [other].
+  factory RangeMap.unmodifiable(RangeMap<C, V> other) =>
+      new UnmodifiableRangeMapView(other);
+
   /// Returns the range containing this key and its associated value,
   /// if such a range is present in the range map, or null otherwise
   Entry<Range<C>, V> getEntry(C key);
@@ -93,3 +97,64 @@ abstract class RangeMap<C extends Comparable, V> {
   /// Returns true if there is at least one key-value pair in the map.
   bool get isNotEmpty;
 }
+
+/// Mixin that overrides mutating map operations with implementations that throw.
+abstract class _UnmodifiableRangeMapMixin<C extends Comparable, V>
+    implements RangeMap<C, V> {
+  @override
+  void operator []=(Range<C> key, V value) {
+    throw new UnsupportedError("Cannot modify unmodifiable RangeMap");
+  }
+
+  @override
+  void addAll(RangeMap<C, V> other) {
+    throw new UnsupportedError("Cannot modify unmodifiable RangeMap");
+  }
+
+  @override
+  void remove(Range<C> rangeToRemove) {
+    throw new UnsupportedError("Cannot modify unmodifiable RangeMap");
+  }
+
+  @override
+  void clear() {
+    throw new UnsupportedError("Cannot modify unmodifiable RangeMap");
+  }
+}
+
+/// Wrapper around a class that implements [RangeMap] that only exposes
+/// `RangeMap` members.
+///
+/// A simple wrapper that delegates all `RangeMap` members to the range map
+/// provided in the constructor.
+///
+/// Base for delegating range map implementations like [UnmodifiableRangeMapView].
+class RangeMapView<C extends Comparable, V> implements RangeMap<C, V> {
+  final RangeMap<C, V> _rangeMap;
+  const RangeMapView(RangeMap<C, V> rangeMap) : _rangeMap = rangeMap;
+
+  Entry<Range<C>, V> getEntry(C key) => _rangeMap.getEntry(key);
+  bool containsValue(Object value) => _rangeMap.containsValue(value);
+  bool containsKey(C key) => _rangeMap.containsKey(key);
+  void clear() => _rangeMap.clear();
+  void forEach(void f(Range<C> key, V value)) => _rangeMap.forEach(f);
+  void addAll(RangeMap<C, V> other) => _rangeMap.addAll(other);
+  void remove(Range<C> rangeToRemove) => _rangeMap.remove(rangeToRemove);
+  Iterable<Range<C>> get keys => _rangeMap.keys;
+  Iterable<V> get values => _rangeMap.values;
+  int get length => _rangeMap.length;
+  bool get isEmpty => _rangeMap.isEmpty;
+  bool get isNotEmpty => _rangeMap.isNotEmpty;
+  V operator [](C key) => _rangeMap[key];
+  void operator []=(Range<C> key, V value) {
+    _rangeMap[key] = value;
+  }
+}
+
+/// View of a [RangeMap] that disallow modifying the range map.
+///
+/// A wrapper around a `RangeMap` that forwards all members to the map provided
+/// in the constructor, except for operations that modify the map.
+/// Modifying operations throw instead.
+class UnmodifiableRangeMapView<C extends Comparable, V> = RangeMapView<C, V>
+    with _UnmodifiableRangeMapMixin<C, V>;

@@ -134,5 +134,21 @@ void main() {
       });
       expect(sum, equals(3));
     });
+
+    test('unmodifiable constructor', () {
+      final unmodifiableMap = new RangeMap.unmodifiable(map);
+      expect(() {
+        unmodifiableMap[new Range(1, 3)] = 3;
+      }, throwsUnsupportedError);
+      expect(() {
+        unmodifiableMap.addAll(new TreeRangeMap());
+      }, throwsUnsupportedError);
+      expect(() {
+        unmodifiableMap.clear();
+      }, throwsUnsupportedError);
+      expect(() {
+        unmodifiableMap.remove(new Range(1, 3));
+      }, throwsUnsupportedError);
+    });
   });
 }
