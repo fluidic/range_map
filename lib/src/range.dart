@@ -60,7 +60,7 @@ class Range<C extends Comparable> {
 
     return new Range<C>(_max(start, other.start), _min(end, other.end));
   }
-}
 
-Comparable _max(Comparable a, Comparable b) => a.compareTo(b) > 0 ? a : b;
-Comparable _min(Comparable a, Comparable b) => a.compareTo(b) < 0 ? a : b;
+  C _max(C a, C b) => a.compareTo(b) > 0 ? a : b;
+  C _min(C a, C b) => a.compareTo(b) < 0 ? a : b;
+}

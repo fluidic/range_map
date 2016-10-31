@@ -10,7 +10,7 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
       new SplayTreeMap<C, _RangeMapEntry<C, V>>();
 
   @override
-  Entry<Range, V> getEntry(C key) {
+  Entry<Range<C>, V> getEntry(C key) {
     final lastKey = _entriesByLowerBound.containsKey(key)
         ? key
         : _entriesByLowerBound.lastKeyBefore(key);
