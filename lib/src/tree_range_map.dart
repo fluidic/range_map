@@ -72,8 +72,8 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
     var key = _entriesByLowerBound.lastKeyBefore(rangeToRemove.start);
     if (key != null) {
       final mapEntryBelowToTruncate = _entriesByLowerBound[key];
-      if (mapEntryBelowToTruncate.key.end > rangeToRemove.start) {
-        if (mapEntryBelowToTruncate.key.end > rangeToRemove.end) {
+      if (mapEntryBelowToTruncate.key.end.compareTo(rangeToRemove.start) > 0) {
+        if (mapEntryBelowToTruncate.key.end.compareTo(rangeToRemove.end) > 0) {
           _putRangeMapEntry(rangeToRemove.end, mapEntryBelowToTruncate.end,
               mapEntryBelowToTruncate.value);
         }
@@ -85,7 +85,7 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
     key = _entriesByLowerBound.lastKeyBefore(rangeToRemove.end);
     if (key != null) {
       final mapEntryAboveToTruncate = _entriesByLowerBound[key];
-      if (mapEntryAboveToTruncate.end > rangeToRemove.end) {
+      if (mapEntryAboveToTruncate.end.compareTo(rangeToRemove.end) > 0) {
         _putRangeMapEntry(rangeToRemove.end, mapEntryAboveToTruncate.end,
             mapEntryAboveToTruncate.value);
       }
@@ -93,7 +93,7 @@ class TreeRangeMap<C extends Comparable, V> implements RangeMap<C, V> {
 
     while (key != null) {
       final mapEntry = _entriesByLowerBound[key];
-      if (mapEntry.start < rangeToRemove.start) {
+      if (mapEntry.start.compareTo(rangeToRemove.start) < 0) {
         break;
       }
       _entriesByLowerBound.remove(mapEntry.start);
