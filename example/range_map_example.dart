@@ -1,6 +1,6 @@
 import 'package:range_map/range_map.dart';
 
-main() {
+void main() {
   final range = new Range<int>(3, 5); // 3 inclusive, 5 exclusive
   final rangeMap = new TreeRangeMap<int, String>();
 

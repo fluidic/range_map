@@ -1,7 +1,7 @@
 import 'package:range_map/range_map.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('Range tests', () {
     test('isEmpty', () {
       final range = new Range<int>(0, 0);

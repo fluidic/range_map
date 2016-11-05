@@ -133,19 +133,33 @@ class RangeMapView<C extends Comparable, V> implements RangeMap<C, V> {
   final RangeMap<C, V> _rangeMap;
   const RangeMapView(RangeMap<C, V> rangeMap) : _rangeMap = rangeMap;
 
+  @override
   Entry<Range<C>, V> getEntry(C key) => _rangeMap.getEntry(key);
+  @override
   bool containsValue(Object value) => _rangeMap.containsValue(value);
+  @override
   bool containsKey(C key) => _rangeMap.containsKey(key);
+  @override
   void clear() => _rangeMap.clear();
+  @override
   void forEach(void f(Range<C> key, V value)) => _rangeMap.forEach(f);
+  @override
   void addAll(RangeMap<C, V> other) => _rangeMap.addAll(other);
+  @override
   void remove(Range<C> rangeToRemove) => _rangeMap.remove(rangeToRemove);
+  @override
   Iterable<Range<C>> get keys => _rangeMap.keys;
+  @override
   Iterable<V> get values => _rangeMap.values;
+  @override
   int get length => _rangeMap.length;
+  @override
   bool get isEmpty => _rangeMap.isEmpty;
+  @override
   bool get isNotEmpty => _rangeMap.isNotEmpty;
+  @override
   V operator [](C key) => _rangeMap[key];
+  @override
   void operator []=(Range<C> key, V value) {
     _rangeMap[key] = value;
   }
